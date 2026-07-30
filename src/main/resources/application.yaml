@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: squadxml-generator
+  config:
+    import:
+      - optional:classpath:local-overrides.yaml
+
+  mvc:
+    problemdetails:
+      enabled: true
+    log-resolved-exception: true
+
+authentik:
+  base-url: ${AUTHENTIK_BASE_URL:}
+  bearer-token: ${AUTHENTIK_BEARER_TOKEN}
