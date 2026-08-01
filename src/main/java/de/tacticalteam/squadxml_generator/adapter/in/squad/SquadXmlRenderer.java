@@ -6,12 +6,9 @@ import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
-import org.springframework.stereotype.Component;
-
 import de.tacticalteam.squadxml_generator.domain.model.Member;
 import de.tacticalteam.squadxml_generator.domain.model.Squad;
 
-@Component
 public class SquadXmlRenderer {
 
     private static final String NOT_APPLICABLE = "N/A";

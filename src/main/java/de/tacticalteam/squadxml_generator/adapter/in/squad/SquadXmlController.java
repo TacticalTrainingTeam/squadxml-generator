@@ -14,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 public class SquadXmlController {
 
     private final SquadInPort squadInPort;
-    private final SquadXmlRenderer squadXmlRenderer;
 
     @GetMapping(value = "/squadxml/squad.xml", produces = MediaType.APPLICATION_XML_VALUE)
     ResponseEntity<String> squadXml() {
@@ -27,8 +26,10 @@ public class SquadXmlController {
     }
 
     private ResponseEntity<String> xmlResponse(Squad squad) {
+        var squadXmlRenderer = new SquadXmlRenderer();
+        var xml = squadXmlRenderer.render(squad);
         return ResponseEntity.ok()
             .contentType(MediaType.APPLICATION_XML)
-            .body(squadXmlRenderer.render(squad));
+            .body(xml);
     }
 }
