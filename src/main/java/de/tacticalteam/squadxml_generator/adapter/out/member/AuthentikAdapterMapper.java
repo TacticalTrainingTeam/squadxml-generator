@@ -1,6 +1,8 @@
 package de.tacticalteam.squadxml_generator.adapter.out.member;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.mapstruct.Mapper;
@@ -20,9 +22,18 @@ abstract class AuthentikAdapterMapper {
 
     static final List<UUID> ALLOWED_RANKS = List.of(OFFIZIER_ID, UNTEROFFIZIER_ID, VETERAN_ID, SOLDAT_ID);
 
-    // TODO Arma 3 name
+    @Mapping(target = "name", expression = "java(mapName(userDto))")
     @Mapping(target = "remark", source = "userDto.groupsObj")
     abstract Member toDomain(String steamId, UserDto userDto);
+
+    String mapName(UserDto userDto) {
+        return Optional.ofNullable(userDto.getAttributes())
+            .map(attr -> attr.get("ttt"))
+            .map(attr -> attr instanceof Map<?, ?> map ? map.get("arma3name") : null)
+            .map(Object::toString)
+            .map(s -> s.isEmpty() ? null : s)
+            .orElse(userDto.getName());
+    }
 
     String remark(List<PartialGroupDto> partialGroupDtos) {
         var result = "N/A";
