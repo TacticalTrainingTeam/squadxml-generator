@@ -20,6 +20,7 @@ abstract class AuthentikAdapterMapper {
 
     static final List<UUID> ALLOWED_RANKS = List.of(OFFIZIER_ID, UNTEROFFIZIER_ID, VETERAN_ID, SOLDAT_ID);
 
+    // TODO Arma 3 name
     @Mapping(target = "remark", source = "userDto.groupsObj")
     abstract Member toDomain(String steamId, UserDto userDto);
 

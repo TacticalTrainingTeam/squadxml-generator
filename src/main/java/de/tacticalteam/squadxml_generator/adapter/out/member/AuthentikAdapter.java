@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 
 import de.tacticalteam.squadxml_generator.adapter.out.authentik.api.CoreApi;
@@ -32,6 +33,7 @@ public class AuthentikAdapter implements MemberOutPort {
     private final AuthentikAdapterMapper mapper;
 
     @Override
+    @Cacheable("members")
     public List<Member> fetchMembers() {
         var userConnections = new ArrayList<UserSourceConnectionDto>();
 

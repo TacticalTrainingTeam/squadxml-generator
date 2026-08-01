@@ -4,6 +4,9 @@ spring:
   config:
     import:
       - optional:classpath:local-overrides.yaml
+  cache:
+    caffeine:
+      spec: expireAfterWrite=10m
 
   mvc:
     problemdetails:

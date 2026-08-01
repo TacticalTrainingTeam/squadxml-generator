@@ -8,13 +8,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.web.client.RestClient;
 
 import de.tacticalteam.squadxml_generator.adapter.out.authentik.ApiClient;
+import de.tacticalteam.squadxml_generator.adapter.out.authentik.api.CoreApi;
+import de.tacticalteam.squadxml_generator.adapter.out.authentik.api.SourcesApi;
 
 @Configuration
 @EnableConfigurationProperties(AuthentikProperties.class)
 public class AuthentikConfiguration {
 
     @Bean
-    @Primary
     ApiClient authentikApiClient(AuthentikProperties properties) {
         var restClient = RestClient.builder()
             .build();
@@ -22,5 +23,15 @@ public class AuthentikConfiguration {
         apiClient.setBasePath(properties.baseUrl());
         apiClient.setBearerToken(properties.bearerToken());
         return apiClient;
+    }
+
+    @Bean
+    SourcesApi sourcesApi(ApiClient apiClient) {
+        return new SourcesApi(apiClient);
+    }
+
+    @Bean
+    CoreApi coreApi(ApiClient apiClient) {
+        return new CoreApi(apiClient);
     }
 }
