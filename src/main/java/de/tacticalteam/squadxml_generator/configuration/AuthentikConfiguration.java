@@ -14,14 +14,6 @@ import de.tacticalteam.squadxml_generator.adapter.out.authentik.ApiClient;
 public class AuthentikConfiguration {
 
     @Bean
-    RestClient authentikRestClient(AuthentikProperties properties) {
-        return RestClient.builder()
-            .baseUrl(properties.baseUrl())
-            .defaultHeader(HttpHeaders.AUTHORIZATION, "Bearer " + properties.bearerToken())
-            .build();
-    }
-
-    @Bean
     @Primary
     ApiClient authentikApiClient(AuthentikProperties properties) {
         var restClient = RestClient.builder()
