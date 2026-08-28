@@ -112,7 +112,7 @@
                             <goal>generate</goal>
                         </goals>
                         <configuration>
-                            <inputSpec>https://login.tacticalteam.de/api/v3/schema/</inputSpec>
+                            <inputSpec>${project.basedir}/src/main/resources/authentik.openapi.yaml</inputSpec>
                             <cleanupOutput>true</cleanupOutput>
                             <generatorName>java</generatorName>
                             <generateApiTests>false</generateApiTests>
